@@ -134,11 +134,11 @@ def v2x_thread(bsm_messages,sensor_owner):
             send_hmi_warning(sensor_owner,'FCW',sim_time)
         elif abs(direction) == 2 and position == 1 and distance < 50 and approach == 1:
             send_hmi_warning(sensor_owner,'ICW',sim_time)
-        elif ego_turn_light == -1 and direction == -1 and lane == 2 and position == 1 and distance < 50:
+        elif ego_turn_light == -1 and direction == -1 and lane == -2 and position == 1 and distance < 50:
             send_hmi_warning(sensor_owner,'LTA',sim_time)
-        elif ego_turn_light == -1 and direction == 1 and lane == -1 and position == -1 and distance < 50:
+        elif ego_turn_light == -1 and direction == 1 and lane == 1 and position == -1 and distance < 50:
             send_hmi_warning(sensor_owner,'LCW',sim_time)
-        elif ego_turn_light == 1 and direction == 1 and lane == 1 and position == -1 and distance < 20:
+        elif ego_turn_light == 1 and direction == 1 and lane == -1 and position == -1 and distance < 20:
             send_hmi_warning(sensor_owner,'LCW',sim_time)
         elif ego_turn_light == -1 and direction == -1 and lane == 1 and position == 1 and distance < 30:
             send_hmi_warning(sensor_owner,'DNPW',sim_time)
