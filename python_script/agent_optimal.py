@@ -19,6 +19,7 @@ prio_dict={'EBW':20,'UFCW':25,'FOW':26,'PCW':27,'ICW':60,'RCW':80,'FCW':120,'VRU
 }
 #veh_name 主车的名字
 veh_name = "Veh_1"
+#veh_name = "Veh_1_1"
 
 def initialize():
     pass
@@ -60,6 +61,7 @@ ego_latitude = 0.0
 ego_longitude = 0.0
 ego_heading = 0.0
 ego_turn_light = 0
+ego_speed = 0
 def angle_diff(a1, a2):
     diff = a1 - a2
     if diff > 180:
@@ -108,6 +110,7 @@ def v2x_thread(bsm_messages,sensor_owner):
         latitude = bsm_message['pos.lat']
         longitude = bsm_message['pos.long']
         heading = bsm_message['heading']*180/3.14159
+        speed = bsm_message['speed']
         ebw = False
         avw = False
         clw = False
@@ -123,35 +126,65 @@ def v2x_thread(bsm_messages,sensor_owner):
         direction, lane, position, distance, approach = calculate_relative_position(latitude, longitude,heading)
         print("soucrceID:", bsm_message['SourceID'], "direction:", direction, "lane:", lane, "position:", position, "distance:", distance,"approach:", approach)
         if ebw and position == 1 and distance < 50:
-            hmi_mess.append('EBW')
+            priority = calc_priority(distance,10,20)
+            hmi_mess.append({'TYPE':'EBW','LEVEL':priority})
         elif avw and position == 1 and distance < 50:
-            hmi_mess.append('AVW')
+            priority = calc_priority(distance,20,30)
+            hmi_mess.append({'TYPE':'AVW','LEVEL':priority})
         elif clw and position == 1 and distance < 50:
-            hmi_mess.append('CLW')
+            priority = calc_priority(distance,20,30)
+            hmi_mess.append({'TYPE':'CLW','LEVEL':priority})
         elif evw and distance < 50:
-            hmi_mess.append('EVW')
+            priority = calc_priority(distance,20,30)
+            hmi_mess.append({'TYPE':'EVW','LEVEL':priority})
         elif direction == 1 and lane == 0 and position == 1 and distance < 30:
-            if distance < 10:
-                priority = 2
-            elif distance < 20:
-                priority = 1
-            else:
-                priority = 0
-            hmi_mess.append('FCW')
+            priority = calc_priority(distance,10,20)
+            hmi_mess.append({'TYPE':'FCW','LEVEL':priority})
         elif abs(direction) == 2 and position == 1 and distance < 50 and approach == 1:
-            hmi_mess.append('ICW')
+            priority = calc_priority(distance,10,20)
+            hmi_mess.append({'TYPE':'ICW','LEVEL':priority})
         elif ego_turn_light == -1 and direction == -1 and lane == 2 and position == 1 and distance < 50:
-            hmi_mess.append('LTA')
+            priority = calc_priority(distance,30,40)
+            hmi_mess.append({'TYPE':'LTA','LEVEL':priority})
         elif ego_turn_light == -1 and direction == 1 and lane == 1 and position == -1 and distance < 50:
-            hmi_mess.append('LCW')
+            priority = calc_priority(distance,30,40)
+            hmi_mess.append({'TYPE':'LCW','LEVEL':priority})
         elif ego_turn_light == 1 and direction == 1 and lane == -1 and position == -1 and distance < 20:
-            hmi_mess.append('LCW')
+            priority = calc_priority(distance,10,20)
+            hmi_mess.append({'TYPE':'LCW','LEVEL':priority})
         elif ego_turn_light == -1 and direction == -1 and lane == 1 and position == 1 and distance < 30:
-            hmi_mess.append('DNPW')
+            priority = calc_priority(distance,20,30)
+            hmi_mess.append({'TYPE':'DNPW','LEVEL':priority})
         elif ego_turn_light == 0 and direction == 1 and abs(lane) == 1 and position == -1 and distance < 20:
-            hmi_mess.append('BSW')
+            priority = calc_priority(distance,10,20)
+            hmi_mess.append({'TYPE':'BSW','LEVEL':priority})
+    urgent_hmi = get_urgent_hmi(hmi_mess)
+    if urgent_hmi:
+        send_hmi_warning(sensor_owner,urgent_hmi['TYPE'],hmi_level = urgent_hmi['LEVEL'],time_stamp = sim_time)
+
+def calc_priority(distance,threshold_one,threshold_two):
+    priority = 0
+    if distance < threshold_one:
+        priority = 2
+    elif distance < threshold_two:
+        priority = 1
+    else:
+        priority = 0
+    return priority
+
+def calc_priority_4_optimal(distance,speed):
+    ttc = 0
+    prior = 0
+    if speed - 0 < 1.0e-16:
+        ttc = sys.maxsize
+    else:
+        ttc = distance/speed
     
-    send_hmi_warning(sensor_owner,get_urgent_hmi(hmi_mess),sim_time)
+    if ttc < 5:
+        prior = 2
+    elif ttc < 10:
+        prior = 1
+    return prior
 
 def get_urgent_hmi(hmi_mess):
     urgent_hmi = ''
@@ -160,14 +193,14 @@ def get_urgent_hmi(hmi_mess):
         key = hmi_mess[0]
         urgent_hmi = key
         for i in range(1,count-1):
-            if prio_dict[key] < prio_dict[hmi_mess[i]]:
+            if prio_dict[key['TYPE']] < prio_dict[hmi_mess[i]['TYPE']]:
                 urgent_hmi = hmi_mess[i]
     return urgent_hmi
         
-
-def send_hmi_warning(sensor_owner,hmi_type,timestamp, duration=0.00,isAlwaysShow = False, info = 'warning info'):
+#msg_type= None, message_type_id=None,warning_level=None, time_stamp=None
+def send_hmi_warning(sensor_owner,hmi_type,hmi_level=None,time_stamp=None):
     try:
-        PyPanoWarningOutput.create_value(sensor_owner,hmi_type,warning_dict[hmi_type])
+        PyPanoWarningOutput.create_value(sensor_owner,hmi_type,warning_dict[hmi_type],warning_level=hmi_level)
         print('*******************************************')
         print(hmi_type)
         print('*******************************************')
@@ -215,12 +248,12 @@ def calc_turn_light(left_light,right_light,cur_sim_time):
     right_changedtime = right_light.split(',')
     left_size = 0
     right_size = 0
-    if len(left_changedtime) == 1 and left_changedtime == '':
+    if left_light.strip()=='':
         pass
     else:
         left_size = len(left_changedtime)
 
-    if len(right_changedtime) == 1 and right_changedtime[0] == right_light:
+    if right_light.strip() =='':
         pass
     else:
         right_size = len(right_changedtime)
@@ -241,7 +274,7 @@ def calc_turn_light(left_light,right_light,cur_sim_time):
     else:
         pass
 
-    while  k<right_size and cur_sim_time > float(left_changedtime[k]) :
+    while  k<right_size and cur_sim_time > float(right_changedtime[k]):
         k+=1
   
     if k%2 ==0:
@@ -260,6 +293,7 @@ def calc_turn_light(left_light,right_light,cur_sim_time):
     else:
         light = 48
     return chr(light)
+
 
 def get_veh_id(target_obsName):
     vehicles = g["Vehicles"]
