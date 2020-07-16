@@ -12,6 +12,11 @@ warning_dict={'EBW':101,'UFCW':102,'FOW':103,'PCW':104,'ICW':105,'RCW':106,'FCW'
     'DNPW':111,'CLW':112,'TJW':113,'DOW':114,'LDW':115,'FDW':116,'SDW':117,'HMW':118,'SORW':119,'CVW':120,
     'EVW':121,'STBSD':122,'RLVW':123,'HLW':124,'SLW':125,'CSWS':126,'AVW':127,'LTA':128
 }
+
+prio_dict={'EBW':20,'UFCW':25,'FOW':26,'PCW':27,'ICW':60,'RCW':80,'FCW':120,'VRUCW':130,'BSW':140,'LCW':145,
+    'DNPW':150,'CLW':170,'TJW':180,'DOW':200,'LDW':410,'FDW':420,'SDW':421,'HMW':425,'SORW':430,'CVW':449,
+    'EVW':450,'STBSD':460,'RLVW':470,'HLW':480,'SLW':481,'CSWS':482,'AVW':451,'LTA':128
+}
 #veh_name 主车的名字
 veh_name = "Veh_1"
 
@@ -98,6 +103,7 @@ def calculate_relative_position(latitude, longitude, heading):
     return direction, lane_no * np.sign(lane_distance), position, distance, approach
 
 def v2x_thread(bsm_messages,sensor_owner):
+    hmi_mess = []
     for bsm_message in bsm_messages:
         latitude = bsm_message['pos.lat']
         longitude = bsm_message['pos.long']
@@ -117,13 +123,13 @@ def v2x_thread(bsm_messages,sensor_owner):
         direction, lane, position, distance, approach = calculate_relative_position(latitude, longitude,heading)
         print("soucrceID:", bsm_message['SourceID'], "direction:", direction, "lane:", lane, "position:", position, "distance:", distance,"approach:", approach)
         if ebw and position == 1 and distance < 50:
-            send_hmi_warning(sensor_owner,'EBW',sim_time)
+            hmi_mess.append('EBW')
         elif avw and position == 1 and distance < 50:
-            send_hmi_warning(sensor_owner,'AVW',sim_time)
+            hmi_mess.append('AVW')
         elif clw and position == 1 and distance < 50:
-            send_hmi_warning(sensor_owner,'CLW',sim_time)
+            hmi_mess.append('CLW')
         elif evw and distance < 50:
-            send_hmi_warning(sensor_owner,'EVW',sim_time)
+            hmi_mess.append('EVW')
         elif direction == 1 and lane == 0 and position == 1 and distance < 30:
             if distance < 10:
                 priority = 2
@@ -131,20 +137,33 @@ def v2x_thread(bsm_messages,sensor_owner):
                 priority = 1
             else:
                 priority = 0
-            send_hmi_warning(sensor_owner,'FCW',sim_time)
+            hmi_mess.append('FCW')
         elif abs(direction) == 2 and position == 1 and distance < 50 and approach == 1:
-            send_hmi_warning(sensor_owner,'ICW',sim_time)
+            hmi_mess.append('ICW')
         elif ego_turn_light == -1 and direction == -1 and lane == 2 and position == 1 and distance < 50:
-            send_hmi_warning(sensor_owner,'LTA',sim_time)
+            hmi_mess.append('LTA')
         elif ego_turn_light == -1 and direction == 1 and lane == 1 and position == -1 and distance < 50:
-            send_hmi_warning(sensor_owner,'LCW',sim_time)
+            hmi_mess.append('LCW')
         elif ego_turn_light == 1 and direction == 1 and lane == -1 and position == -1 and distance < 20:
-            send_hmi_warning(sensor_owner,'LCW',sim_time)
+            hmi_mess.append('LCW')
         elif ego_turn_light == -1 and direction == -1 and lane == 1 and position == 1 and distance < 30:
-            send_hmi_warning(sensor_owner,'DNPW',sim_time)
+            hmi_mess.append('DNPW')
         elif ego_turn_light == 0 and direction == 1 and abs(lane) == 1 and position == -1 and distance < 20:
-            send_hmi_warning(sensor_owner,'BSW',sim_time)
+            hmi_mess.append('BSW')
+    
+    send_hmi_warning(sensor_owner,get_urgent_hmi(hmi_mess),sim_time)
 
+def get_urgent_hmi(hmi_mess):
+    urgent_hmi = ''
+    count = len(hmi_mess)
+    if count > 0:
+        key = hmi_mess[0]
+        urgent_hmi = key
+        for i in range(1,count-1):
+            if prio_dict[key] < prio_dict[hmi_mess[i]]:
+                urgent_hmi = hmi_mess[i]
+    return urgent_hmi
+        
 
 def send_hmi_warning(sensor_owner,hmi_type,timestamp, duration=0.00,isAlwaysShow = False, info = 'warning info'):
     try:
