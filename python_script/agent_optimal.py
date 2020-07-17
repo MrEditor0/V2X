@@ -10,7 +10,7 @@ from PanoLib.PyPanoObject.PyPanoWarningOutput import PyPanoWarningOutput
 
 warning_dict={'EBW':101,'UFCW':102,'FOW':103,'PCW':104,'ICW':105,'RCW':106,'FCW':107,'VRUCW':108,'BSW':109,'LCW':110,
     'DNPW':111,'CLW':112,'TJW':113,'DOW':114,'LDW':115,'FDW':116,'SDW':117,'HMW':118,'SORW':119,'CVW':120,
-    'EVW':121,'STBSD':122,'RLVW':123,'HLW':124,'SLW':125,'CSWS':126,'AVW':127,'LTA':128
+    'EVW':121,'STBSD':122,'RLVW':123,'HLW':124,'SLW':125,'CSWS':126,'AVW':127,'LTA':128,'':0
 }
 
 prio_dict={'EBW':20,'UFCW':25,'FOW':26,'PCW':27,'ICW':60,'RCW':80,'FCW':120,'VRUCW':130,'BSW':140,'LCW':145,
@@ -43,14 +43,11 @@ def output(time):
     sim_time = time
     print(time, " ===========================")
     for sensor in sensorList:
-        if sensor.available():
+        if sensor.available() and (veh_name+'/' in sensor.Name):         
             bsm = cache_bsm.Get(sensor.ID)
             gps_thread(host_id)
             can_thread(host_id)
             v2x_thread(json.loads(bsm),host_id)
-            #print(sensor.Owner +':'+ str(json_obj[0]))
-
-    
 
 def terminate():
     pass
@@ -85,7 +82,6 @@ def calculate_relative_position(latitude, longitude, heading):
     pos_ego = np.asarray([ego_latitude, ego_longitude])
     pos_rv = np.asarray([latitude, longitude])
     pos_ego_next = np.asarray([pos_ego[0] + 10 * math.sin(ego_heading * 3.14159 / 180), pos_ego[1] + 10 * math.cos(ego_heading * 3.14159 / 180)])
-    #pos_ego_next = np.asarray([pos_ego[0] + 10 * math.sin(ego_heading), pos_ego[1] + 10 * math.cos(ego_heading)])
     lane_distance = np.cross(pos_ego_next - pos_ego, pos_ego - pos_rv) / np.linalg.norm(pos_ego_next - pos_ego)
     if abs(lane_distance) < 2:
         lane_no = 0
@@ -96,10 +92,6 @@ def calculate_relative_position(latitude, longitude, heading):
     angle = math.atan2(pos_rv[0] - pos_ego[0], pos_rv[1] - pos_ego[1]) * 180 / 3.14159
     position = 1 if abs(angle_diff(angle, ego_heading)) < 90 else -1
     approach = 1 if abs(angle_diff(angle + 180, heading)) < 90 else -1
-    # print('pos_rv: ')
-    # print(pos_rv)
-    # print(' pos_ego: ')
-    # print(pos_ego)
 
     distance = np.linalg.norm(pos_rv - pos_ego)
     return direction, lane_no * np.sign(lane_distance), position, distance, approach
@@ -161,6 +153,8 @@ def v2x_thread(bsm_messages,sensor_owner):
     urgent_hmi = get_urgent_hmi(hmi_mess)
     if urgent_hmi:
         send_hmi_warning(sensor_owner,urgent_hmi['TYPE'],hmi_level = urgent_hmi['LEVEL'],time_stamp = sim_time)
+    else:
+        send_hmi_warning(sensor_owner,'',hmi_level = 0,time_stamp = sim_time)
 
 def calc_priority(distance,threshold_one,threshold_two):
     priority = 0
@@ -202,7 +196,7 @@ def send_hmi_warning(sensor_owner,hmi_type,hmi_level=None,time_stamp=None):
     try:
         PyPanoWarningOutput.create_value(sensor_owner,hmi_type,warning_dict[hmi_type],warning_level=hmi_level)
         print('*******************************************')
-        print(hmi_type)
+        print('*******告警类型 ：'+hmi_type+'  告警级别 ：'+str(hmi_level)+' *******')
         print('*******************************************')
     except Exception as ex:
         print(str(ex))
@@ -237,7 +231,7 @@ def can_thread(veh_key):
         else:
             ego_turn_light = 0
     except Exception as e:
-        print('vehicle cache get failed ,log info :'+repr(e))
+        print('exception try catch info :'+repr(e))
     finally:
         pass
         #time.sleep(1)
