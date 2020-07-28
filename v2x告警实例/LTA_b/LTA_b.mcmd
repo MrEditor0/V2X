@@ -1,0 +1,352 @@
+CmdVersion><><><3><><><
+PanoAnnoDesc><><><h_block=add_block('built-in/Note','LTA_b/Descriptive text:','FixedWidth', 'On','BackgroundColor','black','ForegroundColor','white','DropShadow','On','FontSize','10');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoDesc'));
+PanoAnnoDesc><><><set_param(h_block,'Position',[100,221,236,241]);><><><
+PanoAnnoDesc><><><set_param(h_block,'Tag','PanoAnnoDesc');><><><
+PanoAnnoHelp><><><h_block=add_block('built-in/Note','LTA_b/Help','FixedWidth', 'On','BackgroundColor','gray','ForegroundColor','white','DropShadow','On','HorizontalAlignment','center','FontSize','16','ClickFcn','OpenHelp(''SimulinkMDLParameters.html'')');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoHelp'));
+PanoAnnoHelp><><><set_param(h_block,'Position',[300,248,400,268]);><><><
+PanoAnnoHelp><><><set_param(h_block,'Tag','PanoAnnoHelp');><><><
+PanoAnnoTable><><><h_block=add_block('built-in/Note','LTA_b/PanoAnnoTable','FixedWidth', 'On','ForegroundColor','gray','Text',sprintf('= = = = = = = = = =\n  Name  \n= = = = = = = = = =\n Veh_1 \n Veh_2 \n Veh_3 \n Veh_1_1 '),'HorizontalAlignment','center','FontSize','14');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoTable'));
+PanoAnnoTable><><><h_block=add_block('built-in/Note','LTA_b/PanoAnnoTable','FixedWidth', 'On','ForegroundColor','gray','Text',sprintf('= = = = = = = = =\n    Type Tag    \n= = = = = = = = =\n ComplexVehicle \n ComplexVehicle \n ComplexVehicle \n ComplexVehicle '),'HorizontalAlignment','center','FontSize','14');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoTable'));
+PanoAnnoTable><><><h_block=add_block('built-in/Note','LTA_b/PanoAnnoTable','FixedWidth', 'On','ForegroundColor','gray','Text',sprintf('= = = = =\n  Type  \n= = = = =\n  P \n  P \n  P \n  P '),'HorizontalAlignment','center','FontSize','14');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoTable'));
+PanoAnnoTable><><><set_param(h_block,'Position',[300,288,420,348]);><><><
+PanoAnnoTable><><><set_param(h_block,'Position',[430,288,510,348]);><><><
+PanoAnnoTable><><><set_param(h_block,'Position',[520,288,630,348]);><><><
+PanoAnnoTable><><><set_param(h_block,'Tag','PanoAnnoTable');><><><
+PanoAnnoVerValue><><><h_block=add_block('built-in/Note','LTA_b/PanoObjects.dll Version 1.0.0.1','FixedWidth', 'On','ForegroundColor','gray','HorizontalAlignment','left','FontSize','10');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoVerValue'));
+PanoAnnoVerValue><><><set_param(h_block,'Position',[100,191,236,211]);><><><
+PanoAnnoVerValue><><><set_param(h_block,'Tag','PanoAnnoVerValue');><><><
+PanoAnnoVersion><><><h_block=add_block('built-in/Note','LTA_b/Version:','FixedWidth', 'On','BackgroundColor','black','ForegroundColor','white','DropShadow','On','FontSize','10');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoVersion'));
+PanoAnnoVersion><><><set_param(h_block,'Position',[100,161,236,181]);><><><
+PanoAnnoVersion><><><set_param(h_block,'Tag','PanoAnnoVersion');><><><
+PanoGlobal><><><set_param('LTA_b','FixedStep','0.001');><><><
+PanoGlobal><><><set_param('LTA_b','MultiTaskRateTransMsg','warning');><><><
+PanoGlobal><><><set_param('LTA_b','Solver','ode1');><><><
+PanoGlobal><><><set_param('LTA_b','SolverType','Fixed-step');><><><
+PanoGlobal><><><set_param('LTA_b','StopTime','500');><><><
+PanoLog><><><h_block=add_block('PanoBlocks3/General/From','LTA_b/From_Veh_1_1_Log');><><><delete_block('LTA_b/From_Veh_1_1_Log');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/From','LTA_b/From_Veh_1_Log');><><><delete_block('LTA_b/From_Veh_1_Log');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/From','LTA_b/From_Veh_2_Log');><><><delete_block('LTA_b/From_Veh_2_Log');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/From','LTA_b/From_Veh_3_Log');><><><delete_block('LTA_b/From_Veh_3_Log');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/PanoLog/BustoVector','LTA_b/BustoVectorLog1');><><><delete_block('LTA_b/BustoVectorLog1');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/PanoLog/BustoVector','LTA_b/BustoVectorLog2');><><><delete_block('LTA_b/BustoVectorLog2');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/PanoLog/BustoVector','LTA_b/BustoVectorLog3');><><><delete_block('LTA_b/BustoVectorLog3');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/PanoLog/BustoVector','LTA_b/BustoVectorLog4');><><><delete_block('LTA_b/BustoVectorLog4');
+PanoLog><><><h_block=add_block('PanoBlocks3/General/PanoLog/PanoLog','LTA_b/PanoLog');><><><delete_block('LTA_b/PanoLog');
+PanoLog><><><h_line=add_line('LTA_b','BustoVectorLog1/1','PanoLog/1', 'autorouting','on');><><><delete_line('LTA_b','BustoVectorLog1/1','PanoLog/1');
+PanoLog><><><h_line=add_line('LTA_b','BustoVectorLog2/1','PanoLog/2', 'autorouting','on');><><><delete_line('LTA_b','BustoVectorLog2/1','PanoLog/2');
+PanoLog><><><h_line=add_line('LTA_b','BustoVectorLog3/1','PanoLog/3', 'autorouting','on');><><><delete_line('LTA_b','BustoVectorLog3/1','PanoLog/3');
+PanoLog><><><h_line=add_line('LTA_b','BustoVectorLog4/1','PanoLog/4', 'autorouting','on');><><><delete_line('LTA_b','BustoVectorLog4/1','PanoLog/4');
+PanoLog><><><h_line=add_line('LTA_b','From_Veh_1_1_Log/1','BustoVectorLog4/1', 'autorouting','on');><><><delete_line('LTA_b','From_Veh_1_1_Log/1','BustoVectorLog4/1');
+PanoLog><><><h_line=add_line('LTA_b','From_Veh_1_Log/1','BustoVectorLog1/1', 'autorouting','on');><><><delete_line('LTA_b','From_Veh_1_Log/1','BustoVectorLog1/1');
+PanoLog><><><h_line=add_line('LTA_b','From_Veh_2_Log/1','BustoVectorLog2/1', 'autorouting','on');><><><delete_line('LTA_b','From_Veh_2_Log/1','BustoVectorLog2/1');
+PanoLog><><><h_line=add_line('LTA_b','From_Veh_3_Log/1','BustoVectorLog3/1', 'autorouting','on');><><><delete_line('LTA_b','From_Veh_3_Log/1','BustoVectorLog3/1');
+PanoLog><><><set_param('LTA_b/BustoVectorLog1','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/BustoVectorLog2','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/BustoVectorLog3','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/BustoVectorLog4','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_1_1_Log','GotoTag','Veh_1_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_1_1_Log','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_1_Log','GotoTag','Veh_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_1_Log','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_2_Log','GotoTag','Veh_2_LogOut');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_2_Log','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_3_Log','GotoTag','Veh_3_LogOut');><><><
+PanoLog><><><set_param('LTA_b/From_Veh_3_Log','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/PanoLog','Parameters','''4'','''',''''');><><><
+PanoLog><><><set_param('LTA_b/PanoLog','Parameters','''4'',''@4e1bf311-cfd7-4dc5-9737-8f993466f60d@97a888eb-47cf-4053-a40f-a0f1d2a4061d@c5856b7f-a77d-4809-8c1d-483fb6a14fa0@1ca82ab4-2898-40ed-b38c-27de204210ff'',''Matlab''');><><><
+PanoLog><><><set_param('LTA_b/PanoLog','ShowName','Off');><><><
+PanoLog><><><set_param('LTA_b/Veh_1/FromVehLog','GotoTag','Veh_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_1/VehGotoLog','GotoTag','Veh_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_1/VehGotoLog','TagVisibility','global');><><><
+PanoLog><><><set_param('LTA_b/Veh_1_1/FromVehLog','GotoTag','Veh_1_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_1_1/VehGotoLog','GotoTag','Veh_1_1_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_1_1/VehGotoLog','TagVisibility','global');><><><
+PanoLog><><><set_param('LTA_b/Veh_2/FromVehLog','GotoTag','Veh_2_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_2/VehGotoLog','GotoTag','Veh_2_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_2/VehGotoLog','TagVisibility','global');><><><
+PanoLog><><><set_param('LTA_b/Veh_3/FromVehLog','GotoTag','Veh_3_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_3/VehGotoLog','GotoTag','Veh_3_LogOut');><><><
+PanoLog><><><set_param('LTA_b/Veh_3/VehGotoLog','TagVisibility','global');><><><
+PanoLog><><><set_param(h_block,'Tag','PanoSim_System');><><><
+PanoLogo><><><h_block=add_block('PanoBlocks3/PanoLogo','LTA_b/PanoLogo');><><><delete_block('LTA_b/PanoLogo');
+PanoLogo><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_1><><><h_block=add_block('PanoBlocks3/Vehicle/ComplexVehicle','LTA_b/Veh_1');><><><delete_block('LTA_b/Veh_1');
+Veh_1><><><set_param('LTA_b/Veh_1','DropShadow','On');><><><
+Veh_1><><><set_param('LTA_b/Veh_1','MaskDisplay','image(imread(''Sedan_2.jpg''));color(''white'');text(0,0,''Veh_1'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_1><><><set_param('LTA_b/Veh_1','ShowName','Off');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel','MaskDisplay','image(imread(''Sedan_2.jpg''));color(''white'');text(0,0,''Veh_1'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Aerodynamics/Aerodynamics Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Body and Tires/Body Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Body and Tires/Body/Body Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Body and Tires/Tires/Tires Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Brake/Brake Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Powertrain/Powertrain Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Steer/Steering Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/ComplexVehicleModel/Suspensions/Suspension Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/DriverModel','MaskDisplay','image(imread(''driver.jpg''))');><><><
+Veh_1><><><set_param('LTA_b/Veh_1/DriverModel/Driver/Driver Model','Parameters','''4e1bf311-cfd7-4dc5-9737-8f993466f60d''');><><><
+Veh_1><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_1/Veh_1_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/General','LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM');><><><delete_block('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM');
+Veh_1/Veh_1_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/Sensor Wrapper','LTA_b/Veh_1/Veh_1_Sensors');><><><delete_block('LTA_b/Veh_1/Veh_1_Sensors');
+Veh_1/Veh_1_Sensors><><><h_block=add_block('built-in/Note','LTA_b/Veh_1/Veh_1_Sensors/Help','FixedWidth', 'On','BackgroundColor','gray','ForegroundColor','white','DropShadow','On','HorizontalAlignment','center','FontSize','16','ClickFcn','OpenHelp(''Signals%20Parameters.html'')');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoSensorHelp'));
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1','V2Sens/1','Veh_1_Sensors/1', 'autorouting','on');><><><delete_line('LTA_b','V2Sens/1','Veh_1_Sensors/1');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors','In1/1','OBU_BSM/1', 'autorouting','on');><><><delete_line('LTA_b','In1/1','OBU_BSM/1');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors','OBU_BSM/1','SensorBus/1', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors','OBU_BSM/1','SensorBus/1');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/10','GeneralSensor/10', 'autorouting','on');><><><delete_line('LTA_b','Bus/10','GeneralSensor/10');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/11','GeneralSensor/11', 'autorouting','on');><><><delete_line('LTA_b','Bus/11','GeneralSensor/11');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/12','GeneralSensor/12', 'autorouting','on');><><><delete_line('LTA_b','Bus/12','GeneralSensor/12');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/13','GeneralSensor/13', 'autorouting','on');><><><delete_line('LTA_b','Bus/13','GeneralSensor/13');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/14','GeneralSensor/14', 'autorouting','on');><><><delete_line('LTA_b','Bus/14','GeneralSensor/14');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/15','GeneralSensor/15', 'autorouting','on');><><><delete_line('LTA_b','Bus/15','GeneralSensor/15');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/16','GeneralSensor/16', 'autorouting','on');><><><delete_line('LTA_b','Bus/16','GeneralSensor/16');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/17','GeneralSensor/17', 'autorouting','on');><><><delete_line('LTA_b','Bus/17','GeneralSensor/17');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/18','GeneralSensor/18', 'autorouting','on');><><><delete_line('LTA_b','Bus/18','GeneralSensor/18');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/19','GeneralSensor/19', 'autorouting','on');><><><delete_line('LTA_b','Bus/19','GeneralSensor/19');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/2','GeneralSensor/2', 'autorouting','on');><><><delete_line('LTA_b','Bus/2','GeneralSensor/2');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/20','GeneralSensor/20', 'autorouting','on');><><><delete_line('LTA_b','Bus/20','GeneralSensor/20');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/3','GeneralSensor/3', 'autorouting','on');><><><delete_line('LTA_b','Bus/3','GeneralSensor/3');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/4','GeneralSensor/4', 'autorouting','on');><><><delete_line('LTA_b','Bus/4','GeneralSensor/4');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/5','GeneralSensor/5', 'autorouting','on');><><><delete_line('LTA_b','Bus/5','GeneralSensor/5');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/6','GeneralSensor/6', 'autorouting','on');><><><delete_line('LTA_b','Bus/6','GeneralSensor/6');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/7','GeneralSensor/7', 'autorouting','on');><><><delete_line('LTA_b','Bus/7','GeneralSensor/7');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/8','GeneralSensor/8', 'autorouting','on');><><><delete_line('LTA_b','Bus/8','GeneralSensor/8');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','Bus/9','GeneralSensor/9', 'autorouting','on');><><><delete_line('LTA_b','Bus/9','GeneralSensor/9');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/10','Bus/10', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/10','Bus/10');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/11','Bus/11', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/11','Bus/11');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/12','Bus/12', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/12','Bus/12');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/13','Bus/13', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/13','Bus/13');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/14','Bus/14', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/14','Bus/14');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/15','Bus/15', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/15','Bus/15');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/16','Bus/16', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/16','Bus/16');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/17','Bus/17', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/17','Bus/17');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/18','Bus/18', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/18','Bus/18');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/19','Bus/19', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/19','Bus/19');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/2','Bus/2', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/2','Bus/2');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/20','Bus/20', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/20','Bus/20');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/3','Bus/3', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/3','Bus/3');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/4','Bus/4', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/4','Bus/4');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/5','Bus/5', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/5','Bus/5');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/6','Bus/6', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/6','Bus/6');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/7','Bus/7', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/7','Bus/7');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/8','Bus/8', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/8','Bus/8');
+Veh_1/Veh_1_Sensors><><><h_line=add_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/9','Bus/9', 'autorouting','on');><><><delete_line('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','GeneralSensor/9','Bus/9');
+Veh_1/Veh_1_Sensors><><><set_param('LTA_b/Veh_1/Veh_1_Sensors','MaskDisplay','image(imread(''sensor.jpg''))');><><><
+Veh_1/Veh_1_Sensors><><><set_param('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM','MaskDisplay','image(imread(''V2X.png''));');><><><
+Veh_1/Veh_1_Sensors><><><set_param('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM/Bus','Inputs','20');><><><
+Veh_1/Veh_1_Sensors><><><set_param('LTA_b/Veh_1/Veh_1_Sensors/OBU_BSM/GeneralSensor','Parameters','''PanoDataModel.Sensor.OBU.BSM.Output'',''8d0eb415-30fb-4a91-935b-4160b45e06fc'',''pos.lat@f,pos.long@f,secMark@i,accuracy.pos@f,transmission@f,speed@f,heading@i,accelSet.long@f,accelSet.lat@f,accelSet.vert@f,accelSet.yaw@f,brakes.traction@i,brakes.abs@i,brakes.scs@i,size.width@f,size.length@f,vehicleClass.classification@i,safetyExt.events@i,safetyExt.lights@i'',''10.00'',''64''');><><><
+Veh_1/Veh_1_Sensors><><><set_param('LTA_b/Veh_1/Veh_1_Sensors/SensorBus','Inputs','1');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_block,'Position',[100,200,200,220]);><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_block,'Tag','PanoAnnoSensorHelp');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','OBU_BSM_Out');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','accelSet.lat');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','accelSet.long');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','accelSet.vert');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','accelSet.yaw');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','accuracy.pos');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','brakes.abs');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','brakes.scs');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','brakes.traction');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','heading');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','pos.lat');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','pos.long');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','safetyExt.events');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','safetyExt.lights');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','secMark');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','size.length');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','size.width');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','speed');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','transmission');><><><
+Veh_1/Veh_1_Sensors><><><set_param(h_line,'Name','vehicleClass.classification');><><><
+Veh_1_1><><><h_block=add_block('PanoBlocks3/Vehicle/ComplexVehicle','LTA_b/Veh_1_1');><><><delete_block('LTA_b/Veh_1_1');
+Veh_1_1><><><set_param('LTA_b/Veh_1_1','DropShadow','On');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1','MaskDisplay','image(imread(''Sedan_2.jpg''));color(''white'');text(0,0,''Veh_1_1'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1','ShowName','Off');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel','MaskDisplay','image(imread(''Sedan_2.jpg''));color(''white'');text(0,0,''Veh_1_1'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Aerodynamics/Aerodynamics Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Body and Tires/Body Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Body and Tires/Body/Body Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Body and Tires/Tires/Tires Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Brake/Brake Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Powertrain/Powertrain Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Steer/Steering Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/ComplexVehicleModel/Suspensions/Suspension Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/DriverModel','MaskDisplay','image(imread(''driver.jpg''))');><><><
+Veh_1_1><><><set_param('LTA_b/Veh_1_1/DriverModel/Driver/Driver Model','Parameters','''1ca82ab4-2898-40ed-b38c-27de204210ff''');><><><
+Veh_1_1><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_2><><><h_block=add_block('PanoBlocks3/Vehicle/ComplexVehicle','LTA_b/Veh_2');><><><delete_block('LTA_b/Veh_2');
+Veh_2><><><set_param('LTA_b/Veh_2','DropShadow','On');><><><
+Veh_2><><><set_param('LTA_b/Veh_2','MaskDisplay','image(imread(''Sedan_1.jpg''));color(''white'');text(0,0,''Veh_2'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_2><><><set_param('LTA_b/Veh_2','ShowName','Off');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel','MaskDisplay','image(imread(''Sedan_1.jpg''));color(''white'');text(0,0,''Veh_2'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Aerodynamics/Aerodynamics Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Body and Tires/Body Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Body and Tires/Body/Body Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Body and Tires/Tires/Tires Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Brake/Brake Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Powertrain/Powertrain Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Steer/Steering Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/ComplexVehicleModel/Suspensions/Suspension Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/DriverModel','MaskDisplay','image(imread(''driver.jpg''))');><><><
+Veh_2><><><set_param('LTA_b/Veh_2/DriverModel/Driver/Driver Model','Parameters','''97a888eb-47cf-4053-a40f-a0f1d2a4061d''');><><><
+Veh_2><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_2/Veh_2_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/General','LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM');><><><delete_block('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM');
+Veh_2/Veh_2_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/Sensor Wrapper','LTA_b/Veh_2/Veh_2_Sensors');><><><delete_block('LTA_b/Veh_2/Veh_2_Sensors');
+Veh_2/Veh_2_Sensors><><><h_block=add_block('built-in/Note','LTA_b/Veh_2/Veh_2_Sensors/Help','FixedWidth', 'On','BackgroundColor','gray','ForegroundColor','white','DropShadow','On','HorizontalAlignment','center','FontSize','16','ClickFcn','OpenHelp(''Signals%20Parameters.html'')');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoSensorHelp'));
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2','V2Sens/1','Veh_2_Sensors/1', 'autorouting','on');><><><delete_line('LTA_b','V2Sens/1','Veh_2_Sensors/1');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors','In1/1','OBU_BSM/1', 'autorouting','on');><><><delete_line('LTA_b','In1/1','OBU_BSM/1');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors','OBU_BSM/1','SensorBus/1', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors','OBU_BSM/1','SensorBus/1');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/10','GeneralSensor/10', 'autorouting','on');><><><delete_line('LTA_b','Bus/10','GeneralSensor/10');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/11','GeneralSensor/11', 'autorouting','on');><><><delete_line('LTA_b','Bus/11','GeneralSensor/11');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/12','GeneralSensor/12', 'autorouting','on');><><><delete_line('LTA_b','Bus/12','GeneralSensor/12');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/13','GeneralSensor/13', 'autorouting','on');><><><delete_line('LTA_b','Bus/13','GeneralSensor/13');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/14','GeneralSensor/14', 'autorouting','on');><><><delete_line('LTA_b','Bus/14','GeneralSensor/14');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/15','GeneralSensor/15', 'autorouting','on');><><><delete_line('LTA_b','Bus/15','GeneralSensor/15');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/16','GeneralSensor/16', 'autorouting','on');><><><delete_line('LTA_b','Bus/16','GeneralSensor/16');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/17','GeneralSensor/17', 'autorouting','on');><><><delete_line('LTA_b','Bus/17','GeneralSensor/17');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/18','GeneralSensor/18', 'autorouting','on');><><><delete_line('LTA_b','Bus/18','GeneralSensor/18');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/19','GeneralSensor/19', 'autorouting','on');><><><delete_line('LTA_b','Bus/19','GeneralSensor/19');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/2','GeneralSensor/2', 'autorouting','on');><><><delete_line('LTA_b','Bus/2','GeneralSensor/2');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/20','GeneralSensor/20', 'autorouting','on');><><><delete_line('LTA_b','Bus/20','GeneralSensor/20');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/3','GeneralSensor/3', 'autorouting','on');><><><delete_line('LTA_b','Bus/3','GeneralSensor/3');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/4','GeneralSensor/4', 'autorouting','on');><><><delete_line('LTA_b','Bus/4','GeneralSensor/4');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/5','GeneralSensor/5', 'autorouting','on');><><><delete_line('LTA_b','Bus/5','GeneralSensor/5');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/6','GeneralSensor/6', 'autorouting','on');><><><delete_line('LTA_b','Bus/6','GeneralSensor/6');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/7','GeneralSensor/7', 'autorouting','on');><><><delete_line('LTA_b','Bus/7','GeneralSensor/7');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/8','GeneralSensor/8', 'autorouting','on');><><><delete_line('LTA_b','Bus/8','GeneralSensor/8');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','Bus/9','GeneralSensor/9', 'autorouting','on');><><><delete_line('LTA_b','Bus/9','GeneralSensor/9');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/10','Bus/10', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/10','Bus/10');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/11','Bus/11', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/11','Bus/11');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/12','Bus/12', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/12','Bus/12');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/13','Bus/13', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/13','Bus/13');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/14','Bus/14', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/14','Bus/14');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/15','Bus/15', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/15','Bus/15');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/16','Bus/16', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/16','Bus/16');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/17','Bus/17', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/17','Bus/17');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/18','Bus/18', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/18','Bus/18');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/19','Bus/19', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/19','Bus/19');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/2','Bus/2', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/2','Bus/2');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/20','Bus/20', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/20','Bus/20');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/3','Bus/3', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/3','Bus/3');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/4','Bus/4', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/4','Bus/4');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/5','Bus/5', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/5','Bus/5');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/6','Bus/6', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/6','Bus/6');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/7','Bus/7', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/7','Bus/7');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/8','Bus/8', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/8','Bus/8');
+Veh_2/Veh_2_Sensors><><><h_line=add_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/9','Bus/9', 'autorouting','on');><><><delete_line('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','GeneralSensor/9','Bus/9');
+Veh_2/Veh_2_Sensors><><><set_param('LTA_b/Veh_2/Veh_2_Sensors','MaskDisplay','image(imread(''sensor.jpg''))');><><><
+Veh_2/Veh_2_Sensors><><><set_param('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM','MaskDisplay','image(imread(''V2X.png''));');><><><
+Veh_2/Veh_2_Sensors><><><set_param('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM/Bus','Inputs','20');><><><
+Veh_2/Veh_2_Sensors><><><set_param('LTA_b/Veh_2/Veh_2_Sensors/OBU_BSM/GeneralSensor','Parameters','''PanoDataModel.Sensor.OBU.BSM.Output'',''22875442-1d9b-42e7-a6c5-9a15ff706ab1'',''pos.lat@f,pos.long@f,secMark@i,accuracy.pos@f,transmission@f,speed@f,heading@i,accelSet.long@f,accelSet.lat@f,accelSet.vert@f,accelSet.yaw@f,brakes.traction@i,brakes.abs@i,brakes.scs@i,size.width@f,size.length@f,vehicleClass.classification@i,safetyExt.events@i,safetyExt.lights@i'',''10.00'',''64''');><><><
+Veh_2/Veh_2_Sensors><><><set_param('LTA_b/Veh_2/Veh_2_Sensors/SensorBus','Inputs','1');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_block,'Position',[100,200,200,220]);><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_block,'Tag','PanoAnnoSensorHelp');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','OBU_BSM_Out');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','accelSet.lat');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','accelSet.long');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','accelSet.vert');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','accelSet.yaw');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','accuracy.pos');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','brakes.abs');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','brakes.scs');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','brakes.traction');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','heading');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','pos.lat');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','pos.long');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','safetyExt.events');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','safetyExt.lights');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','secMark');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','size.length');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','size.width');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','speed');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','transmission');><><><
+Veh_2/Veh_2_Sensors><><><set_param(h_line,'Name','vehicleClass.classification');><><><
+Veh_3><><><h_block=add_block('PanoBlocks3/Vehicle/ComplexVehicle','LTA_b/Veh_3');><><><delete_block('LTA_b/Veh_3');
+Veh_3><><><set_param('LTA_b/Veh_3','DropShadow','On');><><><
+Veh_3><><><set_param('LTA_b/Veh_3','MaskDisplay','image(imread(''BoxTruck.jpg''));color(''white'');text(0,0,''Veh_3'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_3><><><set_param('LTA_b/Veh_3','ShowName','Off');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel','MaskDisplay','image(imread(''BoxTruck.jpg''));color(''white'');text(0,0,''Veh_3'',''HorizontalAlignment'',''left'',''verticalAlignment'',''bottom'');color(''red'');text(0.1,0.1,''P'',''HorizontalAlignment'',''right'',''verticalAlignment'',''top'');');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Aerodynamics/Aerodynamics Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Body and Tires/Body Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Body and Tires/Body/Body Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Body and Tires/Tires/Tires Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Brake/Brake Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Powertrain/Powertrain Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Steer/Steering Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/ComplexVehicleModel/Suspensions/Suspension Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/DriverModel','MaskDisplay','image(imread(''driver.jpg''))');><><><
+Veh_3><><><set_param('LTA_b/Veh_3/DriverModel/Driver/Driver Model','Parameters','''c5856b7f-a77d-4809-8c1d-483fb6a14fa0''');><><><
+Veh_3><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_3/Veh_3_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/General','LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM');><><><delete_block('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM');
+Veh_3/Veh_3_Sensors><><><h_block=add_block('PanoBlocks3/Sensor/Sensor Wrapper','LTA_b/Veh_3/Veh_3_Sensors');><><><delete_block('LTA_b/Veh_3/Veh_3_Sensors');
+Veh_3/Veh_3_Sensors><><><h_block=add_block('built-in/Note','LTA_b/Veh_3/Veh_3_Sensors/Help','FixedWidth', 'On','BackgroundColor','gray','ForegroundColor','white','DropShadow','On','HorizontalAlignment','center','FontSize','16','ClickFcn','OpenHelp(''Signals%20Parameters.html'')');><><><delete(find_system('LTA_b','findall','on','tag','PanoAnnoSensorHelp'));
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3','V2Sens/1','Veh_3_Sensors/1', 'autorouting','on');><><><delete_line('LTA_b','V2Sens/1','Veh_3_Sensors/1');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors','In1/1','OBU_BSM/1', 'autorouting','on');><><><delete_line('LTA_b','In1/1','OBU_BSM/1');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors','OBU_BSM/1','SensorBus/1', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors','OBU_BSM/1','SensorBus/1');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/10','GeneralSensor/10', 'autorouting','on');><><><delete_line('LTA_b','Bus/10','GeneralSensor/10');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/11','GeneralSensor/11', 'autorouting','on');><><><delete_line('LTA_b','Bus/11','GeneralSensor/11');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/12','GeneralSensor/12', 'autorouting','on');><><><delete_line('LTA_b','Bus/12','GeneralSensor/12');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/13','GeneralSensor/13', 'autorouting','on');><><><delete_line('LTA_b','Bus/13','GeneralSensor/13');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/14','GeneralSensor/14', 'autorouting','on');><><><delete_line('LTA_b','Bus/14','GeneralSensor/14');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/15','GeneralSensor/15', 'autorouting','on');><><><delete_line('LTA_b','Bus/15','GeneralSensor/15');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/16','GeneralSensor/16', 'autorouting','on');><><><delete_line('LTA_b','Bus/16','GeneralSensor/16');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/17','GeneralSensor/17', 'autorouting','on');><><><delete_line('LTA_b','Bus/17','GeneralSensor/17');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/18','GeneralSensor/18', 'autorouting','on');><><><delete_line('LTA_b','Bus/18','GeneralSensor/18');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/19','GeneralSensor/19', 'autorouting','on');><><><delete_line('LTA_b','Bus/19','GeneralSensor/19');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/2','GeneralSensor/2', 'autorouting','on');><><><delete_line('LTA_b','Bus/2','GeneralSensor/2');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/20','GeneralSensor/20', 'autorouting','on');><><><delete_line('LTA_b','Bus/20','GeneralSensor/20');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/3','GeneralSensor/3', 'autorouting','on');><><><delete_line('LTA_b','Bus/3','GeneralSensor/3');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/4','GeneralSensor/4', 'autorouting','on');><><><delete_line('LTA_b','Bus/4','GeneralSensor/4');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/5','GeneralSensor/5', 'autorouting','on');><><><delete_line('LTA_b','Bus/5','GeneralSensor/5');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/6','GeneralSensor/6', 'autorouting','on');><><><delete_line('LTA_b','Bus/6','GeneralSensor/6');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/7','GeneralSensor/7', 'autorouting','on');><><><delete_line('LTA_b','Bus/7','GeneralSensor/7');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/8','GeneralSensor/8', 'autorouting','on');><><><delete_line('LTA_b','Bus/8','GeneralSensor/8');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','Bus/9','GeneralSensor/9', 'autorouting','on');><><><delete_line('LTA_b','Bus/9','GeneralSensor/9');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/10','Bus/10', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/10','Bus/10');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/11','Bus/11', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/11','Bus/11');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/12','Bus/12', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/12','Bus/12');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/13','Bus/13', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/13','Bus/13');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/14','Bus/14', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/14','Bus/14');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/15','Bus/15', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/15','Bus/15');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/16','Bus/16', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/16','Bus/16');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/17','Bus/17', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/17','Bus/17');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/18','Bus/18', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/18','Bus/18');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/19','Bus/19', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/19','Bus/19');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/2','Bus/2', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/2','Bus/2');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/20','Bus/20', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/20','Bus/20');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/3','Bus/3', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/3','Bus/3');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/4','Bus/4', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/4','Bus/4');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/5','Bus/5', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/5','Bus/5');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/6','Bus/6', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/6','Bus/6');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/7','Bus/7', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/7','Bus/7');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/8','Bus/8', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/8','Bus/8');
+Veh_3/Veh_3_Sensors><><><h_line=add_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/9','Bus/9', 'autorouting','on');><><><delete_line('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','GeneralSensor/9','Bus/9');
+Veh_3/Veh_3_Sensors><><><set_param('LTA_b/Veh_3/Veh_3_Sensors','MaskDisplay','image(imread(''sensor.jpg''))');><><><
+Veh_3/Veh_3_Sensors><><><set_param('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM','MaskDisplay','image(imread(''V2X.png''));');><><><
+Veh_3/Veh_3_Sensors><><><set_param('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM/Bus','Inputs','20');><><><
+Veh_3/Veh_3_Sensors><><><set_param('LTA_b/Veh_3/Veh_3_Sensors/OBU_BSM/GeneralSensor','Parameters','''PanoDataModel.Sensor.OBU.BSM.Output'',''5b877987-4886-4f31-ab5a-685279d7ddb6'',''pos.lat@f,pos.long@f,secMark@i,accuracy.pos@f,transmission@f,speed@f,heading@i,accelSet.long@f,accelSet.lat@f,accelSet.vert@f,accelSet.yaw@f,brakes.traction@i,brakes.abs@i,brakes.scs@i,size.width@f,size.length@f,vehicleClass.classification@i,safetyExt.events@i,safetyExt.lights@i'',''10.00'',''64''');><><><
+Veh_3/Veh_3_Sensors><><><set_param('LTA_b/Veh_3/Veh_3_Sensors/SensorBus','Inputs','1');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_block,'Position',[100,200,200,220]);><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_block,'Tag','PanoAnnoSensorHelp');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_block,'Tag','PanoSim_System');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','OBU_BSM_Out');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','accelSet.lat');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','accelSet.long');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','accelSet.vert');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','accelSet.yaw');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','accuracy.pos');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','brakes.abs');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','brakes.scs');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','brakes.traction');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','heading');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','pos.lat');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','pos.long');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','safetyExt.events');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','safetyExt.lights');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','secMark');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','size.length');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','size.width');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','speed');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','transmission');><><><
+Veh_3/Veh_3_Sensors><><><set_param(h_line,'Name','vehicleClass.classification');><><><

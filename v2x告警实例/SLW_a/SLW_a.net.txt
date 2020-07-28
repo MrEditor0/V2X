@@ -1,0 +1,155 @@
+{
+   "ProductVersion" : "3.0",
+   "RoadNetwork" : {
+      "EdgeSet" : [
+         {
+            "FromNodeID" : "1897c20c-49c0-405a-a0e8-c5f45d6403aa",
+            "HeightMap" : {
+               "Constant" : 0,
+               "Table" : [
+                  [ 0, -5, 0, 5 ],
+                  [ 10, 0, 0, 0 ],
+                  [ 20, 0, 0, 0 ]
+               ],
+               "Type" : 1
+            },
+            "ID" : "1ad66fc7-1298-4372-b5ad-fd44a2a3af47",
+            "LaneIDSet" : [ "d03d6f8c-d3e9-43f6-9dbd-6e0f64d869d2" ],
+            "LeftHand" : 0,
+            "MaxSpd" : 250,
+            "Name" : "OpenField",
+            "NumberOfLane" : 1,
+            "PtSet" : [
+               [ -2000, 0, 0 ],
+               [ 2000, 0, 0 ]
+            ],
+            "RoadMeshInfo" : {
+               "HeightOffset" : 0.060,
+               "MeshStep" : 512,
+               "MeshWidth" : 512
+            },
+            "ToNodeID" : "ab5d0cac-771e-4175-9121-41daf0b7d5e2",
+            "TransitionalZones" : [],
+            "Width" : {
+               "Constant" : 1024,
+               "Table" : [],
+               "Type" : 0
+            }
+         }
+      ],
+      "LaneSet" : [
+         {
+            "AllowVehType" : [],
+            "Direction" : 0,
+            "EdgeID" : "1ad66fc7-1298-4372-b5ad-fd44a2a3af47",
+            "FrictionFactor" : {
+               "Constant" : 0.8,
+               "Table" : [
+                  [ 0, 0.8 ],
+                  [ 100, 0.8 ]
+               ],
+               "Type" : 0
+            },
+            "ID" : "d03d6f8c-d3e9-43f6-9dbd-6e0f64d869d2",
+            "LaneLine" : [
+               {
+                  "DashLength" : 4,
+                  "ID" : "d386d626-adae-4e6e-9174-2b9f1a5d1530",
+                  "SolidLength" : 2,
+                  "Type" : 0,
+                  "Width" : 0.2
+               },
+               {
+                  "DashLength" : 4,
+                  "ID" : "69bc6d76-555d-4ba8-847d-cf881ed167c1",
+                  "SolidLength" : 2,
+                  "Type" : 0,
+                  "Width" : 0.2
+               }
+            ],
+            "LaneMeshInfo" : {
+               "BlendColor" : [ 1, 1, 1, 0.5 ],
+               "BlendTexture" : "flaw1.jpg",
+               "MainTexture" : "asphalt.jpg",
+               "TextureScaleU" : [ 1, 1 ]
+            },
+            "MaxSpd" : 250,
+            "MinSpd" : 0,
+            "Name" : "Lane_1",
+            "Offset" : {
+               "Constant" : 0,
+               "Table" : [
+                  [ 0, 3 ],
+                  [ 100, 3 ]
+               ],
+               "Type" : 0
+            },
+            "Width" : {
+               "Constant" : 2000,
+               "Table" : [
+                  [ 0, 6 ],
+                  [ 100, 6 ]
+               ],
+               "Type" : 0
+            }
+         }
+      ],
+      "NodeSet" : [
+         {
+            "ID" : "1897c20c-49c0-405a-a0e8-c5f45d6403aa",
+            "IncomingEdgeIDSet" : [],
+            "LaneLink" : [],
+            "OutgoingEdgeIDSet" : [ "1ad66fc7-1298-4372-b5ad-fd44a2a3af47" ],
+            "PolyShape" : [],
+            "Pos" : [ -1024, 0, 0 ],
+            "Type" : 0
+         },
+         {
+            "ID" : "ab5d0cac-771e-4175-9121-41daf0b7d5e2",
+            "IncomingEdgeIDSet" : [ "1ad66fc7-1298-4372-b5ad-fd44a2a3af47" ],
+            "LaneLink" : [],
+            "OutgoingEdgeIDSet" : [],
+            "PolyShape" : [],
+            "Pos" : [ 1024, 0, 0 ],
+            "Type" : 0
+         }
+      ],
+      "OutlineSet" : [],
+      "ParkingPotSet" : [],
+      "Properties" : {
+         "Angle" : 0,
+         "FrictionFactor" : {
+            "Constant" : 0.8,
+            "Table" : [
+               [ 0, 0.8 ],
+               [ 100, 0.8 ]
+            ],
+            "Type" : 0
+         },
+         "HeightMap" : {
+            "Constant" : 0,
+            "Table" : [
+               [ 0, -5, 0, 5 ],
+               [ 0, 0, 0, 0 ],
+               [ 10, 0, 0, 0 ],
+               [ 20, 0, 0, 0 ]
+            ],
+            "Type" : 0
+         },
+         "ID" : "d51b7bab-0994-49e2-bce5-527db6a3c0a4",
+         "LaneMeshInfo" : {
+            "BlendColor" : [],
+            "BlendTexture" : "flaw1.jpg",
+            "MainTexture" : "grass.jpg",
+            "TextureScaleU" : []
+         },
+         "Length" : 4000,
+         "Name" : "OpenFld",
+         "OffsetX" : 0,
+         "OffsetY" : 0,
+         "Pos" : [ 0, 0, 0 ],
+         "Type" : "1",
+         "Width" : 4000
+      }
+   }
+}
