@@ -4,17 +4,20 @@ import sys
 import datetime
 import math
 import numpy as np   
+from PanoLib.PyPanoData.PyPanoDataIO import PyPanoDataIO 
 from PanoLib.PyPanoObject.PyPanoWarningOutput import PyPanoWarningOutput
 import json
 
 warning_dict={'EBW':101,'UFCW':102,'FOW':103,'PCW':104,'ICW':105,'RCW':106,'FCW':107,'VRUCW':108,'BSW':109,'LCW':110,
     'DNPW':111,'CLW':112,'TJW':113,'DOW':114,'LDW':115,'FDW':116,'SDW':117,'HMW':118,'SORW':119,'CVW':120,
-    'EVW':121,'STBSD':122,'RLVW':123,'HLW':124,'SLW':125,'CSWS':126,'AVW':127,'LTA':128,'':0,'GLOSA':402,'IVS':403,'Jc_8':201
+    'EVW':121,'STBSD':122,'RLVW':123,'HLW':124,'SLW':125,'CSWS':126,'AVW':127,'LTA':128,'':0,'GLOSA':402,'IVS':403
 }
+#'Jc_8':201,'Bangsha_1':229,'Base_LeftR':202
 prio_dict={'EBW':20,'UFCW':25,'FOW':26,'PCW':27,'ICW':60,'RCW':80,'FCW':120,'VRUCW':130,'BSW':140,'LCW':145,
     'DNPW':150,'CLW':170,'TJW':180,'DOW':200,'LDW':410,'FDW':420,'SDW':421,'HMW':425,'SORW':430,'CVW':449,
-    'EVW':450,'STBSD':460,'RLVW':470,'HLW':480,'SLW':481,'CSWS':482,'AVW':451,'LTA':128,'GLOSA':402,'IVS':403,'RLVW':470
+    'EVW':450,'STBSD':460,'RLVW':470,'HLW':480,'SLW':481,'CSWS':482,'AVW':451,'LTA':128,'GLOSA':402,'IVS':454,'RLVW':470,
 }
+#'Jc_8':454,'Bangsha_1':454,'Base_LeftR':454
 veh_name = "Veh_1"
 
 def initialize():
@@ -22,7 +25,12 @@ def initialize():
 
 
 def start():
-    global host_id
+    global g_db, g_grid, vehicle_cache, sim_time,host_id
+    #host_id = '65ff4a6f-e423-428f-b9f1-c5e17da2fbba'
+    g_db = PyPanoDataIO()
+    g_grid = g_db.get_grid()
+    sim_time = 0.0
+    vehicle_cache = g_grid.GetOrCreateCache[str, str]("PanoDataModel.VehicleStatus")
     print("in function start")
     host_id = get_veh_id(veh_name)
     #processer.start()
@@ -106,11 +114,12 @@ def v2x_thread(sensor_data,sensor_owner,sim_time):
     global spat_id, spat_light, spat_time, spat_ts
     def check_in_road(last_position, current_position):
         road_angle = math.atan2(current_position[0] - last_position[0], current_position[1] - last_position[1]) * 180 / 3.14159
-        print('signboard 的 前后两点的角度{0}，远车的角度{1},angle_diff :{2}'.format(str(road_angle),str(ego_heading),str(angle_diff(road_angle, ego_heading))))
+        #print('signboard 的 前后两点的角度{0}，远车的角度{1},angle_diff :{2}'.format(str(road_angle),str(ego_heading),str(angle_diff(road_angle, ego_heading))))
         if abs(angle_diff(road_angle, ego_heading)) < DIRECTION_THRESHOLD  or abs(angle_diff(road_angle, ego_heading-180)) < DIRECTION_THRESHOLD:
             pos_ego = np.asarray([ego_latitude, ego_longitude])
             distance = abs(np.cross(current_position - last_position, last_position - pos_ego) / np.linalg.norm(current_position - last_position))
-            if distance < 10:
+            #print('主车和车道的距离{0}'.format(distance))
+            if distance < 18.75:
                 angle_last = math.atan2(pos_ego[0] - last_position[0], pos_ego[1] - last_position[1]) * 180 / 3.14159
                 angle_current = math.atan2(current_position[0] - pos_ego[0], current_position[1] - pos_ego[1]) * 180 / 3.14159
                 if (abs(angle_diff(angle_last, ego_heading-180)) < 90 or abs(angle_diff(angle_last, ego_heading)) < 90) and abs(angle_diff(angle_current, ego_heading)) < 90:
@@ -171,12 +180,15 @@ def v2x_thread(sensor_data,sensor_owner,sim_time):
                     priority = calc_priority(distance,10,20)
                     hmi_mess.append({'TYPE':'BSW','LEVEL':priority})
             elif message['Type'] == 'RSM':
+                #print(message)
+                for participant in message['message']['participants']:
+                    pass
                 latitude = message['message']['participants'][0]['posOffset']['offsetLL'][1]['lat']
                 longitude = message['message']['participants'][0]['posOffset']['offsetLL'][1]['lon']
                 heading = message['message']['participants'][0]['heading'] *180/3.14159
                 direction, lane, position, distance, approach = calculate_relative_position(latitude, longitude, heading)
                 print("id:", message['message']['id'], "direction:", direction, "lane:", lane, "position:", position, "distance:", distance, "light:", ego_turn_light, "approach:", approach)
-                if position == 1 and distance < 50:
+                if position == 1 and distance < 50 and message['message']['participants'][0]['ptcType'] == 1:
                     priority = calc_priority(distance,30,40)
                     hmi_mess.append({'TYPE':'VRUCW','LEVEL':priority})
             elif message['Type'] == 'RSI':
@@ -193,33 +205,39 @@ def v2x_thread(sensor_data,sensor_owner,sim_time):
                             pos_ego = np.asarray([ego_latitude, ego_longitude])
                             distance = np.linalg.norm(pos_sign - pos_ego)
                             if distance < message['message']['alertRadius']:
+                                angle = math.atan2(pos_sign[0] - pos_ego[0], pos_sign[1] - pos_ego[1]) * 180 / 3.14159
+                                if message['message']['alertType'] == 1 :
+                                     priority = calc_priority(distance,30,50)
+                                     hmi_mess.append({'TYPE':'TJW','LEVEL':priority})
+                                # if message['message']['alertType'] == 1 and abs(angle_diff(angle,ego_heading)) < DIRECTION_THRESHOLD:
+                                #     priority = calc_priority(distance,30,50)
+                                #     hmi_mess.append({'TYPE':'TJW','LEVEL':priority})
                                 description = message['message']['description']
                                 des_list = description.split('/')
                                 hmi_mess.append({'TYPE':des_list[len(des_list)-1],'LEVEL':2})
-                            print('车和交通标志牌{0}的距离是{1}'.format(message['message']['description'],str(distance)))
+                            #print('车和交通标志牌{0}的距离是{1}'.format(message['message']['description'],str(distance)))
                             break
                     last_position = current_position
             elif message['Type'] == 'MAP':
                 last_position = None
                 for point in message['message']['nodes'][1]['inLinks'][0]['lanes'][0]['points']:
-                        latitude = point['posOffset']['offsetLL'][1]['lat']
-                        longitude = point['posOffset']['offsetLL'][1]['lon']
-                        current_position = np.asarray([latitude, longitude])
-                        if last_position is not None:
-                            if check_in_road(last_position, current_position):
-                                # if ego_speed >message['message']['nodes'][1]['inLinks'][0]['speedLimits'][0]['speed']:
-                                #     send_hmi_warning(HMI_WARING_TYPE.index("SLW"), 1)
-                                #if message['message']['nodes'][1]['inLinks'][0]['movements'][0]['phaseId'] == spat_id and datetime.datetime.now().timestamp() - spat_ts < 2:
-                                phaseid = message['message']['nodes'][1]['inLinks'][0]['lanes'][0]['connectsTo'][0]['phaseId']
-                                if message['message']['nodes'][1]['inLinks'][0]['lanes'][0]['connectsTo'][0]['phaseId'] == spat_id and sim_time - spat_ts < 2:
-                                    if spat_light == 3:
-                                        hmi_mess.append({'TYPE':'RLVW','LEVEL':2})
-                                    elif spat_light == 5:
-                                        pos_ego = np.asarray([ego_latitude, ego_longitude])
-                                        distance = np.linalg.norm(current_position - pos_ego)
-                                        hmi_mess.append({'TYPE':'GLOSA-'+str((distance / spat_time)*3.6),'LEVEL':2})
-                                break
-                        last_position = current_position
+                    latitude = point['posOffset']['offsetLL'][1]['lat']
+                    longitude = point['posOffset']['offsetLL'][1]['lon']
+                    current_position = np.asarray([latitude, longitude])
+                    if last_position is not None:
+                        print('主车速度为：{0}，限速为：{1}'.format(ego_speed,message['message']['nodes'][1]['inLinks'][0]['speedLimits'][0]['speed']))
+                        if check_in_road(last_position, current_position):
+                            if ego_speed >message['message']['nodes'][1]['inLinks'][0]['speedLimits'][0]['speed']:
+                                hmi_mess.append({'TYPE':'SLW','LEVEL':2})
+                            elif message['message']['nodes'][1]['inLinks'][0]['lanes'][0]['connectsTo'][0]['phaseId'] == spat_id and sim_time - spat_ts < 2:
+                                if spat_light == 3:
+                                    hmi_mess.append({'TYPE':'RLVW','LEVEL':2})
+                                elif spat_light == 5:
+                                    pos_ego = np.asarray([ego_latitude, ego_longitude])
+                                    distance = np.linalg.norm(current_position - pos_ego)
+                                    hmi_mess.append({'TYPE':'GLOSA-'+str((distance / spat_time)*3.6),'LEVEL':2})
+                            break
+                    last_position = current_position
             elif message['Type'] == 'SPAT':
                 #stop-And-Remain (3), permissive-Movement-Allowed (5),
                 spat_id = message['message']['intersections'][0]['phases'][0]['id']
@@ -227,7 +245,7 @@ def v2x_thread(sensor_data,sensor_owner,sim_time):
                 spat_time =  message['message']['intersections'][0]['phases'][0]['phaseStates'][0]['timing']['likelyEndTime'] / 1000
                 #spat_ts = datetime.datetime.now().timestamp()
                 spat_ts = sim_time
-
+    print(hmi_mess)
     urgent_hmi = get_urgent_hmi(hmi_mess)
     if urgent_hmi:
         send_hmi_warning(sensor_owner,urgent_hmi['TYPE'],hmi_level = urgent_hmi['LEVEL'],time_stamp = sim_time)
@@ -339,7 +357,8 @@ def calc_turn_light(left_light,right_light,cur_sim_time):
 #msg_type= None, message_type_id=None,warning_level=None, time_stamp=None
 def send_hmi_warning(sensor_owner,hmi_type,hmi_level=None,time_stamp=None):
     try:
-        PyPanoWarningOutput.create_value(sensor_owner,hmi_type,warning_dict[hmi_type.split("-", 1)[0]],warning_level=hmi_level)
+        code = 403 if hmi_type.split("-", 1)[0] not in warning_dict.keys() else warning_dict[hmi_type.split("-", 1)[0]]
+        PyPanoWarningOutput.create_value(sensor_owner,hmi_type, code,warning_level=hmi_level)
         print('*******************************************')
         print('*******告警类型 ：'+hmi_type+'  告警级别 ：'+str(hmi_level)+' *******')
         print('*******************************************')
@@ -348,13 +367,26 @@ def send_hmi_warning(sensor_owner,hmi_type,hmi_level=None,time_stamp=None):
     finally:
         pass
 
+def get_urgent_hmi_old(hmi_mess):
+    urgent_hmi = ''
+    count = len(hmi_mess)
+    if count > 0:
+        key = hmi_mess[0]
+        urgent_hmi = key
+        for i in range(1,count):
+            if key['TYPE'].split("-", 1)[0] in prio_dict.keys() and hmi_mess[i]['TYPE'].split("-", 1)[0] in prio_dict.keys():
+                if prio_dict[key['TYPE'].split("-", 1)[0]] < prio_dict[hmi_mess[i]['TYPE'].split("-", 1)[0]]:
+                    urgent_hmi = hmi_mess[i]
+    return urgent_hmi
+
 def get_urgent_hmi(hmi_mess):
     urgent_hmi = ''
     count = len(hmi_mess)
     if count > 0:
         key = hmi_mess[0]
         urgent_hmi = key
-        for i in range(1,count-1):
-            if prio_dict[key['TYPE'].split("-", 1)[0]] < prio_dict[hmi_mess[i]['TYPE'].split("-", 1)[0]]:
-                urgent_hmi = hmi_mess[i]
+        for i in range(1,count):
+            key_prio = prio_dict['IVS'] if key['TYPE'].split("-", 1)[0] not in prio_dict.keys() else prio_dict[key['TYPE'].split("-", 1)[0]]
+            temp_prio = prio_dict['IVS'] if hmi_mess[i]['TYPE'].split("-", 1)[0] not in prio_dict.keys() else prio_dict[hmi_mess[i]['TYPE'].split("-", 1)[0]]
+            urgent_hmi = hmi_mess[i] if key_prio < temp_prio else urgent_hmi
     return urgent_hmi
