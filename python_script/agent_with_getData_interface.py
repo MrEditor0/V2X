@@ -385,7 +385,7 @@ def get_urgent_hmi(hmi_mess):
     if count > 0:
         key = hmi_mess[0]
         urgent_hmi = key
-        for i in range(1,count):
+        for i in range(0,count):
             key_prio = prio_dict['IVS'] if key['TYPE'].split("-", 1)[0] not in prio_dict.keys() else prio_dict[key['TYPE'].split("-", 1)[0]]
             temp_prio = prio_dict['IVS'] if hmi_mess[i]['TYPE'].split("-", 1)[0] not in prio_dict.keys() else prio_dict[hmi_mess[i]['TYPE'].split("-", 1)[0]]
             urgent_hmi = hmi_mess[i] if key_prio < temp_prio else urgent_hmi
