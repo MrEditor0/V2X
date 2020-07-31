@@ -1,0 +1,76 @@
+/**
+ * Author: WANGYizhi
+ * Created: Tue Sep 06 15:44:22 CST 2016
+ */
+RSM DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS RoadsideSafetyMessage;
+IMPORTS AccelerationSet4Way FROM DefAcceleration
+		VehicleSize FROM VehSize
+		Position3D, PositionConfidenceSet FROM DefPosition
+		DSecond FROM DefTime
+		Speed, Heading, SteeringWheelAngle, MotionConfidenceSet FROM DefMotion
+		TransmissionState FROM VehStatus
+		MsgCount FROM MsgFrame
+		VehicleClassification FROM VehClass
+		PositionOffsetLLV FROM DefPositionOffset;
+	
+	RoadsideSafetyMessage ::= SEQUENCE {
+		msgCnt MsgCount,
+		id OCTET STRING (SIZE(8)),
+		-- RSU ID
+		refPos Position3D,
+		-- Reference position of this RSM message
+		participants ParticipantList,
+		-- All or part of the participants 
+		-- detected by RSU
+		...
+	}
+	
+	ParticipantList ::= SEQUENCE (SIZE(1..16)) OF ParticipantData
+	
+	ParticipantData ::= SEQUENCE {
+		ptcType ParticipantType,
+		ptcId INTEGER (0..65535),
+		-- temporary ID set by RSU
+		-- 0 is RSU itself
+		-- 1..255 represent participants detected by RSU
+		source SourceType,
+		id OCTET STRING (SIZE(8)) OPTIONAL,
+		plateNo OCTET STRING (SIZE(4..16)) OPTIONAL,
+		secMark DSecond,
+		pos PositionOffsetLLV,
+		accuracy PositionConfidenceSet,
+		transmission TransmissionState OPTIONAL,
+		speed Speed,
+		heading Heading,
+		angle SteeringWheelAngle OPTIONAL,
+		motionCfd MotionConfidenceSet OPTIONAL,
+		accelSet AccelerationSet4Way OPTIONAL,
+		size VehicleSize,
+		vehicleClass VehicleClassification OPTIONAL,
+		...
+	}
+	
+	ParticipantType ::= ENUMERATED {
+		unknown (0), -- B'0000 Unknown
+		motor (1), -- B'0001 motor
+		non-motor (2), -- B'0010 non-motor
+		pedestrian (3), -- B'0011 pedestrian
+		rsu (4), -- B'0100 rsu
+		...
+		}
+	
+	SourceType ::= ENUMERATED {
+		unknown(0),	-- 0 Unknown
+		selfinfo(1),	-- 1 infomation from itself
+		v2x(2),	-- 2 v2x
+		video(3),	-- 3 video
+		microwaveRadar(4),	-- 4 microwave radar
+		loop(5),	-- 5 loop
+		...
+		}
+	
+END

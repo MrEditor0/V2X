@@ -1,0 +1,69 @@
+/**
+ * Author: WANGYizhi
+ * Created: Wed Mar 15 20:21:24 CST 2017
+ */
+RSI DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS RoadSideInformation;
+IMPORTS MsgCount FROM MsgFrame
+		MinuteOfTheYear FROM DefTime
+		Position3D FROM DefPosition
+		PositionOffsetLLV FROM DefPositionOffset;
+	
+	RoadSideInformation ::= SEQUENCE {
+		msgCnt MsgCount,
+		timeStamp MinuteOfTheYear OPTIONAL,
+		id OCTET STRING (SIZE(8)),
+		-- RSU ID
+		rsiId INTEGER (0..255),
+		-- local ID of this rsi information set by RSU
+		alertType AlertType,
+		-- Text message warning or Traffic sign type according to China GB5768
+		description IA5String (SIZE(1..256)) OPTIONAL,
+		-- Text message if alertType = 0
+		-- Additional description to the traffic sign if alertType > 0
+		-- e.g. describe the subtype of the traffic sign
+		priority Priority OPTIONAL,
+		-- the urgency of this message, a relative
+		-- degree of merit compared with other
+		-- similar messages for this type (not other
+		-- messages being sent by the device), nor a
+		-- priority of display urgency
+		refPos Position3D, 
+		-- Position of traffic alert (traffic sign or incident)
+		alertPath PathPointList,
+		-- Warning is active if vehicle is within this path
+		-- Points are listed from upstream to downstream
+		-- along the vehicle drive direction.
+		-- One path includes at least two points.
+		alertRadius Radius,
+		-- The biggest distance away from the alert path
+		-- within which the warning is active.
+		...
+	}
+	
+	PathPointList ::= SEQUENCE (SIZE(2..32)) OF PositionOffsetLLV
+	-- Path point list for RSA message
+	
+	Radius ::= INTEGER (0..1024)
+	-- Radius of roadside alert
+	-- Unit is 0.1m
+	
+	AlertType ::= INTEGER (0..65535)
+	-- Text message warning = 0
+	
+	-- Traffic signs according to China GB5768
+	-- Danger = 37
+	-- Rockfall = 15
+	-- SharpTurn = 2
+	-- UnderConstruction = 38
+	-- Slippy = 17
+	-- Tunnel = 21
+	
+	Priority ::= OCTET STRING (SIZE(1))
+	-- The lower five bits are reserved and shall be set to zero
+	-- Value from B00000000 to B11100000 represents the lowest to the highest level
+	
+END

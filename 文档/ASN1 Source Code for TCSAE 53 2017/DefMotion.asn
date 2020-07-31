@@ -1,0 +1,70 @@
+/**
+ * Author: WANGYizhi
+ * Created: Tue Sep 06 14:51:12 CST 2016
+ */
+DefMotion DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS Speed, Heading, SteeringWheelAngle, MotionConfidenceSet, CoarseHeading;
+IMPORTS ;
+	
+	Speed ::= INTEGER (0..8191)
+	-- Units of 0.02 m/s
+	-- The value 8191 indicates that
+	-- speed is unavailable
+	
+	Heading ::= INTEGER (0..28800) 
+	-- LSB of 0.0125 degrees 
+	-- A range of 0 to 359.9875 degrees
+	
+	CoarseHeading ::= INTEGER (0..240)
+	-- Where the LSB is in units of 1.5 degrees
+	-- over a range of 0~358.5 degrees
+	-- the value 240 shall be used for unavailable
+	
+	SteeringWheelAngle ::= INTEGER (-126..127)
+	-- LSB units of 1.5 degrees, a range of -189 to +189 degrees
+	-- +001 = +1.5 deg
+	-- -126 = -189 deg and beyond
+	-- +126 = +189 deg and beyond
+	-- +127 to be used for unavailable
+	
+	MotionConfidenceSet ::= SEQUENCE {
+		speedCfd SpeedConfidence OPTIONAL,
+		headingCfd HeadingConfidence OPTIONAL,
+		steerCfd SteeringWheelAngleConfidence OPTIONAL
+	}
+	
+	HeadingConfidence ::= ENUMERATED {
+		unavailable (0), -- B'000 Not Equipped or unavailable
+		prec10deg (1), -- B'010 10 degrees
+		prec05deg (2), -- B'011 5 degrees
+		prec01deg (3), -- B'100 1 degrees
+		prec0-1deg (4), -- B'101 0.1 degrees
+		prec0-05deg (5), -- B'110 0.05 degrees
+		prec0-01deg (6), -- B'110 0.01 degrees
+		prec0-0125deg (7) -- B'111 0.0125 degrees, aligned with heading LSB
+		} -- Encoded as a 3 bit value
+	
+	SpeedConfidence ::= ENUMERATED {
+		unavailable (0), -- Not Equipped or unavailable
+		prec100ms (1), -- 100 meters / sec
+		prec10ms (2), -- 10 meters / sec
+		prec5ms (3), -- 5 meters / sec
+		prec1ms (4), -- 1 meters / sec
+		prec0-1ms (5), -- 0.1 meters / sec
+		prec0-05ms (6), -- 0.05 meters / sec
+		prec0-01ms (7) -- 0.01 meters / sec
+		}-- Encoded as a 3 bit value
+	
+	SteeringWheelAngleConfidence ::= ENUMERATED {
+		unavailable (0), -- B'00 Not Equipped with Wheel angle
+		-- or Wheel angle status is unavailable
+		prec2deg (1), -- B'01 2 degrees
+		prec1deg (2), -- B'10 1 degree
+		prec0-02deg (3) -- B'11 0.02 degrees
+		}-- Encoded as a 2 bit value
+	
+	
+END

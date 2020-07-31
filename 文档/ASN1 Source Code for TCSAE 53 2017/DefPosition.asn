@@ -1,0 +1,76 @@
+/**
+ * Author: WANGYizhi
+ * Created: Mon Jul 25 10:48:37 CST 2016
+ */
+DefPosition DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS Latitude, Longitude, Elevation, PositionConfidenceSet, Position3D;
+IMPORTS ;
+	
+	Latitude ::= INTEGER (-900000000..900000001) 
+	-- LSB = 1/10 micro degree 
+	-- Providing a range of plus-minus 90 degrees
+	
+	Longitude ::= INTEGER (-1799999999..1800000001) 
+	-- LSB = 1/10 micro degree 
+	-- Providing a range of plus-minus 180 degrees
+	
+	Elevation ::= INTEGER (-4096..61439)
+	-- In units of 10 cm steps above or below the reference ellipsoid
+	-- Providing a range of -409.5 to + 6143.9 meters
+	-- The value -4096 shall be used when Unknown is to be sent
+	
+	PositionConfidenceSet ::= SEQUENCE {
+		pos PositionConfidence, -- for both horizontal directions
+		elevation ElevationConfidence OPTIONAL
+	}
+	
+	PositionConfidence ::= ENUMERATED {
+		unavailable (0), -- B'0000 Not Equipped or unavailable
+		a500m (1), -- B'0001 500m or about 5 * 10 ^ -3 decimal degrees
+		a200m (2), -- B'0010 200m or about 2 * 10 ^ -3 decimal degrees
+		a100m (3), -- B'0011 100m or about 1 * 10 ^ -3 decimal degrees
+		a50m (4), -- B'0100 50m or about 5 * 10 ^ -4 decimal degrees
+		a20m (5), -- B'0101 20m or about 2 * 10 ^ -4 decimal degrees
+		a10m (6), -- B'0110 10m or about 1 * 10 ^ -4 decimal degrees
+		a5m (7), -- B'0111 5m or about 5 * 10 ^ -5 decimal degrees
+		a2m (8), -- B'1000 2m or about 2 * 10 ^ -5 decimal degrees
+		a1m (9), -- B'1001 1m or about 1 * 10 ^ -5 decimal degrees
+		a50cm (10), -- B'1010 0.50m or about 5 * 10 ^ -6 decimal degrees
+		a20cm (11), -- B'1011 0.20m or about 2 * 10 ^ -6 decimal degrees
+		a10cm (12), -- B'1100 0.10m or about 1 * 10 ^ -6 decimal degrees
+		a5cm (13), -- B'1101 0.05m or about 5 * 10 ^ -7 decimal degrees
+		a2cm (14), -- B'1110 0.02m or about 2 * 10 ^ -7 decimal degrees
+		a1cm (15) -- B'1111 0.01m or about 1 * 10 ^ -7 decimal degrees
+	} -- Encoded as a 4 bit value
+	
+	ElevationConfidence ::= ENUMERATED {
+		unavailable (0), -- B'0000 Not Equipped or unavailable
+		elev-500-00 (1), -- B'0001 (500 m)
+		elev-200-00 (2), -- B'0010 (200 m)
+		elev-100-00 (3), -- B'0011 (100 m)
+		elev-050-00 (4), -- B'0100 (50 m)
+		elev-020-00 (5), -- B'0101 (20 m)
+		elev-010-00 (6), -- B'0110 (10 m)
+		elev-005-00 (7), -- B'0111 (5 m)
+		elev-002-00 (8), -- B'1000 (2 m)
+		elev-001-00 (9), -- B'1001 (1 m)
+		elev-000-50 (10), -- B'1010 (50 cm)
+		elev-000-20 (11), -- B'1011 (20 cm)
+		elev-000-10 (12), -- B'1100 (10 cm)
+		elev-000-05 (13), -- B'1101 (5 cm)
+		elev-000-02 (14), -- B'1110 (2 cm)
+		elev-000-01 (15) -- B'1111 (1 cm)
+	} -- Encoded as a 4 bit value
+	
+	Position3D ::= SEQUENCE {
+		lat Latitude, 
+		-- in 1/10th micro degrees
+		long Longitude, 
+		-- in 1/10th micro degrees
+		elevation Elevation OPTIONAL
+		-- in 10 cm units
+	}
+END
